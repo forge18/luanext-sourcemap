@@ -306,7 +306,6 @@ impl SourceMap {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
