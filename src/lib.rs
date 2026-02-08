@@ -1,6 +1,12 @@
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
+pub mod source_map;
+pub mod translator;
+
+pub use source_map::{SourceMapLoader, SourceMapLoaderError, SourceMapSource};
+pub use translator::{Position, PositionTranslator, SourceLocation, TranslationError};
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default, Serialize, Deserialize)]
 pub struct Span {
     pub start: u32,
