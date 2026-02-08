@@ -1,12 +1,12 @@
 [package]
-name = "lua-sourcemap"
+name = "luanext-sourcemap"
 version = "0.1.0"
 edition = "2021"
-description = "Source map generation for Lua compilers"
-documentation = "https://github.com/typedlua/typedlua"
-repository = "https://github.com/typedlua/lua-sourcemap"
+description = "Source map generation for LuaNext compiler"
+documentation = "https://github.com/forge18/luanext-sourcemap"
+repository = "https://github.com/forge18/luanext-sourcemap"
 license = "MIT"
-keywords = ["lua", "sourcemap", "compiler"]
+keywords = ["lua", "luanext", "sourcemap", "compiler"]
 categories = ["development-tools", "parsing"]
 
 [dependencies]
