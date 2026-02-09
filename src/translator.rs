@@ -5,7 +5,7 @@
 
 use crate::source_map::{SourceMapLoader, SourceMapLoaderError, SourceMapSource};
 use crate::SourceMap;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use thiserror::Error;
 
 /// Errors that can occur during position translation
@@ -80,7 +80,7 @@ impl PositionTranslator {
         let source_map = self
             .source_maps
             .get(generated_file)
-            .ok_or_else(|| SourceMapLoaderError::NotFound)?;
+            .ok_or(SourceMapLoaderError::NotFound)?;
 
         // For now, we'll implement a simplified version that just returns the first source
         // A full implementation would parse the mappings string and find the correct mapping
@@ -109,7 +109,7 @@ impl PositionTranslator {
             if source_map
                 .sources
                 .iter()
-                .any(|source| PathBuf::from(source) == *original_file)
+                .any(|source| original_file == Path::new(source))
             {
                 // For now, we'll return a simple mapping
                 // A full implementation would parse the mappings string and find the correct mapping
@@ -133,13 +133,9 @@ impl PositionTranslator {
         let source_map = self
             .source_maps
             .get(generated_file)
-            .ok_or_else(|| SourceMapLoaderError::NotFound)?;
+            .ok_or(SourceMapLoaderError::NotFound)?;
 
-        let sources = source_map
-            .sources
-            .iter()
-            .map(|s| PathBuf::from(s))
-            .collect();
+        let sources = source_map.sources.iter().map(PathBuf::from).collect();
 
         Ok(sources)
     }
