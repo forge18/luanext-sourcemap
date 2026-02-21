@@ -318,7 +318,7 @@ mod tests {
 
     #[test]
     fn test_source_map_builder() {
-        let mut builder = SourceMapBuilder::new("input.tl".to_string());
+        let mut builder = SourceMapBuilder::new("input.luax".to_string());
         builder.set_file("output.lua".to_string());
         builder.add_mapping(Span::new(0, 0, 0, 5), Some("foo".to_string()));
         builder.advance("local");
@@ -327,7 +327,7 @@ mod tests {
 
         assert_eq!(source_map.version, 3);
         assert_eq!(source_map.file, Some("output.lua".to_string()));
-        assert_eq!(source_map.sources, vec!["input.tl".to_string()]);
+        assert_eq!(source_map.sources, vec!["input.luax".to_string()]);
         assert!(source_map.names.contains(&"foo".to_string()));
     }
 
@@ -345,7 +345,7 @@ mod tests {
             version: 3,
             file: Some("output.lua".to_string()),
             source_root: None,
-            sources: vec!["input.tl".to_string()],
+            sources: vec!["input.luax".to_string()],
             sources_content: vec![],
             names: vec!["foo".to_string()],
             mappings: "AAAA".to_string(),
@@ -362,7 +362,7 @@ mod tests {
             version: 3,
             file: Some("output.lua".to_string()),
             source_root: None,
-            sources: vec!["input.tl".to_string()],
+            sources: vec!["input.luax".to_string()],
             sources_content: vec![],
             names: vec![],
             mappings: "AAAA".to_string(),
@@ -378,7 +378,7 @@ mod tests {
             version: 3,
             file: Some("output.lua".to_string()),
             source_root: None,
-            sources: vec!["input.tl".to_string()],
+            sources: vec!["input.luax".to_string()],
             sources_content: vec![],
             names: vec![],
             mappings: "AAAA".to_string(),
@@ -390,7 +390,7 @@ mod tests {
 
     #[test]
     fn test_multiple_mappings() {
-        let mut builder = SourceMapBuilder::new("input.tl".to_string());
+        let mut builder = SourceMapBuilder::new("input.luax".to_string());
 
         builder.add_mapping(Span::new(0, 5, 1, 1), Some("foo".to_string()));
         builder.advance("local");
@@ -413,7 +413,7 @@ mod tests {
 
     #[test]
     fn test_multiline_mappings() {
-        let mut builder = SourceMapBuilder::new("input.tl".to_string());
+        let mut builder = SourceMapBuilder::new("input.luax".to_string());
 
         builder.add_mapping(Span::new(0, 5, 1, 1), None);
         builder.advance("local");
@@ -430,7 +430,7 @@ mod tests {
 
     #[test]
     fn test_advance_tracking() {
-        let mut builder = SourceMapBuilder::new("input.tl".to_string());
+        let mut builder = SourceMapBuilder::new("input.luax".to_string());
 
         assert_eq!(builder.generated_line, 0);
         assert_eq!(builder.generated_column, 0);
@@ -450,7 +450,7 @@ mod tests {
 
     #[test]
     fn test_source_content() {
-        let mut builder = SourceMapBuilder::new("input.tl".to_string());
+        let mut builder = SourceMapBuilder::new("input.luax".to_string());
         builder.add_source_content("const x = 42".to_string());
 
         let source_map = builder.build();
@@ -464,7 +464,7 @@ mod tests {
 
     #[test]
     fn test_name_deduplication() {
-        let mut builder = SourceMapBuilder::new("input.tl".to_string());
+        let mut builder = SourceMapBuilder::new("input.luax".to_string());
 
         builder.add_mapping(Span::new(0, 3, 1, 1), Some("foo".to_string()));
         builder.advance("foo");

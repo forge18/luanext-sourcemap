@@ -184,7 +184,7 @@ mod tests {
     #[test]
     fn test_reverse_lookup() {
         let translator = PositionTranslator::new();
-        let file = PathBuf::from("test.tl");
+        let file = PathBuf::from("test.luax");
         let result = translator.reverse_lookup(&file, 1, 1);
         // Should fail since no source maps are loaded
         assert!(result.is_err());
